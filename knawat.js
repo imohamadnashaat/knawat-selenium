@@ -54,6 +54,43 @@ class Knawat {
         this.testData()
     }
 
+    async createCatalogiStore() {
+        const storeURL = this.appURL + '/store/create/catalogi?store='
+        let fullStoreURL = ''
+        if (this.appURL == 'https://app.knawat.com') {
+            fullStoreURL = 'https://' + this.user.timestamp + '.catalogi.net/'
+        }
+        else {
+            fullStoreURL = 'https://' + this.user.timestamp + '.catalogi.xyz/'
+        }
+        const fullURL = storeURL + fullStoreURL
+        await this.driver.switchTo().newWindow('tab');
+        await this.driver.get(fullURL);
+        await this.sleep(20)
+        console.log('Store URL', fullStoreURL)
+    }
+    
+    async createWoocommerceStore() {
+        const storeURL = this.appURL + '/store/create/woocommerce?store='
+        let fullStoreURL = ''
+        fullStoreURL = 'https://' + this.user.timestamp + '.io/'
+        const fullURL = storeURL + fullStoreURL
+        await this.driver.switchTo().newWindow('tab');
+        await this.driver.get(fullURL);
+        await this.sleep(20)
+        console.log('Store URL', fullStoreURL)
+    }
+    
+    async createCatalogiStorePR(storePR) {
+        const storeURL = this.appURL + '/store/create/catalogi_pr?store='
+        const fullStoreURL = storePR
+        const fullURL = storeURL + fullStoreURL
+        await this.driver.switchTo().newWindow('tab');
+        await this.driver.get(fullURL);
+        await this.sleep(2)
+        console.log('Store URL', fullStoreURL)
+    }
+
     testData() {
         console.log('<<< Test data >>>');
         for (const [key, value] of Object.entries(this.user)) {
